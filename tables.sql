@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS public.client (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    email VARCHAR(255),
-    phone_number VARCHAR(15)
+    id SERIAL PRIMARY KEY NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone_number CHAR(13) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.service
@@ -26,17 +26,16 @@ CREATE TABLE IF NOT EXISTS public.client_service
 
 
 CREATE TABLE IF NOT EXISTS public.room_type (
-    room_type_id SERIAL PRIMARY KEY,
-    room_type VARCHAR(255)
+    room_type_id SERIAL PRIMARY KEY NOT NULL,
+    room_type VARCHAR(255) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS public.room (
     room_id SERIAL PRIMARY KEY,
-    room_type_id INT,
-    price_per_night NUMERIC(10, 2),
-    room_capacity NUMERIC(2, 0),
-    is_available BOOLEAN,
+    room_type_id INT NOT NULL,
+    price_per_night NUMERIC(10, 2) NOT NULL,
+    room_capacity NUMERIC(2, 0) NOT NULL,
     FOREIGN KEY (room_type_id) REFERENCES public.room_type (room_type_id)
 );
 
