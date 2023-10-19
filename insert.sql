@@ -59,7 +59,10 @@ VALUES (4, 300.00, 2),
        (3, 600.00, 2);
 
 INSERT INTO public.payment_type (payment_type)
-VALUES ('Bitcoin'),
+VALUES ('Cash'),
+       ('Debit Card'),
+	   ('Credit Card'),
+	   ('Bitcoin'),
        ('Apple Pay'),
        ('Google Pay'),
        ('Venmo'),
