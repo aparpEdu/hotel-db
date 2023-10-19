@@ -3,7 +3,10 @@ CREATE TABLE IF NOT EXISTS public.client (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(15) NOT NULL
+    phone_number CHAR(13) NOT NULL,
+	birthday DATE NOT NULL,
+	eu_gdpr BOOLEAN NOT NULL,
+	uin CHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.service
