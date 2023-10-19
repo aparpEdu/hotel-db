@@ -1,14 +1,15 @@
-INSERT INTO public.client (first_name, last_name, email, phone_number)
-VALUES ('Emily', 'Johnson', 'emily.j@example.com', '555-123-4567'),
-       ('Michael', 'Davis', 'michael.d@example.com', '555-987-6543'),
-       ('Sara', 'Brown', 'sara.b@example.com', '555-234-5678'),
-       ('Daniel', 'White', 'daniel.w@example.com', '555-876-5432'),
-       ('Laura', 'Lee', 'laura.l@example.com', '555-345-6789'),
-       ('Matthew', 'Young', 'matthew.y@example.com', '555-654-3210'),
-       ('Olivia', 'Moore', 'olivia.m@example.com', '555-432-1098'),
-       ('James', 'Williams', 'james.w@example.com', '555-210-9876'),
-       ('Ava', 'Martinez', 'ava.m@example.com', '555-789-0123'),
-       ('Ethan', 'Garcia', 'ethan.g@example.com', '555-901-2345');
+INSERT INTO public.client (first_name, last_name, email, phone_number, birthday, eu_gdpr, uin)
+VALUES ('Emily', 'Johnson', 'emily.j@example.com', '555-123-4567', '1990-05-15', true, 'ABC1234567'),
+       ('Michael', 'Davis', 'michael.d@example.com', '555-987-6543', '1985-08-22', true, 'DEF9876543'),
+       ('Sara', 'Brown', 'sara.b@example.com', '555-234-5678', '1992-11-10', true, 'GHI2345678'),
+       ('Daniel', 'White', 'daniel.w@example.com', '555-876-5432', '1980-04-30', true, 'JKL8765432'),
+       ('Laura', 'Lee', 'laura.l@example.com', '555-345-6789', '1988-09-02', true, 'MNO3456789'),
+       ('Matthew', 'Young', 'matthew.y@example.com', '555-654-3210', '1995-02-18', true, 'PQR6543210'),
+       ('Olivia', 'Moore', 'olivia.m@example.com', '555-432-1098', '1991-07-25', true, 'STU4321098'),
+       ('James', 'Williams', 'james.w@example.com', '555-210-9876', '1983-12-07', true, 'VWX2109876'),
+       ('Ava', 'Martinez', 'ava.m@example.com', '555-789-0123', '1993-03-14', true, 'YZA7890123'),
+       ('Ethan', 'Garcia', 'ethan.g@example.com', '555-901-2345', '1987-06-29', true, 'BCD9012345');
+
 
 INSERT INTO public.service (name, price, season_start_date, season_end_date, is_seasonal)
 VALUES ('Penthouse Suite', 500.00, '2023-01-01', '2023-12-31', TRUE),
