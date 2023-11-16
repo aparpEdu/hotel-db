@@ -23,3 +23,7 @@ CREATE USER nikolay WITH ENCRYPTED PASSWORD '!Nikolay123';
 GRANT hotel_admin TO alexander;
 GRANT hotel_admin TO pavel;
 GRANT hotel_admin TO nikolay;
+
+-- SELECT table_schema, table_name, privilege_type
+-- FROM information_schema.role_table_grants
+-- WHERE grantee = 'hotel_admin' AND table_schema = 'public';
