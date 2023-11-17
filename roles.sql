@@ -39,3 +39,11 @@ GRANT INSERT ON TABLE client_service TO hotel_employee;
 -- FROM information_schema.role_table_grants
 -- WHERE grantee = 'hotel_employee' AND table_schema = 'public';
 
+CREATE USER employee1 WITH ENCRYPTED PASSWORD '!Employee1';
+CREATE USER employee2 WITH ENCRYPTED PASSWORD '!Employee2';
+CREATE USER employee3 WITH ENCRYPTED PASSWORD '!Employee3';
+
+GRANT hotel_employee TO employee1;
+GRANT hotel_employee TO employee2;
+GRANT hotel_employee TO employee3;
+
