@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS public.room_type (
 
 CREATE TABLE IF NOT EXISTS public.room (
     room_id SERIAL PRIMARY KEY,
+    room_number VARCHAR(50) NOT NULL UNIQUE,
     room_type_id INT NOT NULL,
     price_per_night NUMERIC(10, 2) NOT NULL,
     room_capacity NUMERIC(2, 0) NOT NULL,
