@@ -47,17 +47,17 @@ VALUES ('King Suite'),
        ('Studio Suite'),
        ('Bungalow');
 
-INSERT INTO public.room (room_type_id, price_per_night, room_capacity)
-VALUES (4, 300.00, 2),
-       (5, 100.00, 1),
-       (6, 150.00, 2),
-       (7, 180.00, 2),
-       (8, 250.00, 2),
-       (9, 200.00, 2),
-       (10, 280.00, 2),
-       (1, 450.00, 2),
-       (2, 120.00, 2),
-       (3, 600.00, 2);
+INSERT INTO public.room (room_type_id, price_per_night, room_capacity, room_number)
+VALUES (4, 300.00, 2, '101A'),
+       (5, 100.00, 1, '101B'),
+       (6, 150.00, 2, '102A'),
+       (7, 180.00, 2, '102B'),
+       (8, 250.00, 2, '103A'),
+       (9, 200.00, 2, '103B'),
+       (10, 280.00, 2, '104A'),
+       (1, 450.00, 2, '104B'),
+       (2, 120.00, 2, '201A'),
+       (3, 600.00, 2, '201B');
 
 INSERT INTO public.payment_type (payment_type)
 VALUES ('Cash'),
