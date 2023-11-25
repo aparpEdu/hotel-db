@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS public.reservation_review (
 	reservation_id INTEGER NOT NULL UNIQUE,
 	client_id INTEGER NOT NULL,
 	comment VARCHAR(500) NOT NULL,
-	rating INTEGER NOT NULL,
+	rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
 	date_posted DATE NOT NULL,
 	FOREIGN KEY (reservation_id) REFERENCES public.reservation (id),
 	FOREIGN KEY (client_id) REFERENCES public.client (id)
