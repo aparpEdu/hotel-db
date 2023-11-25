@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public.client (
 	eu_gdpr BOOLEAN NOT NULL,
 	uin CHAR(10) NOT NULL UNIQUE
 );
-
+--TODO
 CREATE TABLE IF NOT EXISTS public.service
 (
     id SERIAL PRIMARY KEY NOT NULL,
@@ -52,12 +52,13 @@ CREATE TABLE IF NOT EXISTS public.payment_type (
 	id SERIAL PRIMARY KEY NOT NULL,
 	payment_type VARCHAR(255) NOT NULL UNIQUE
 );
-
+--TODO total sum trigger
 CREATE TABLE IF NOT EXISTS public.payment (
     id SERIAL PRIMARY KEY NOT NULL,
     type_id INT NOT NULL,
     status_id INT NOT NULL,
     total_sum NUMERIC(10,2) NOT NULL,
+    payment_date TIMESTAMP NOT NULL CHECK(payment_date >= CURRENT_TIMESTAMP),
 	FOREIGN KEY (type_id) REFERENCES public.payment_type (id),
 	FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
@@ -77,7 +78,6 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     FOREIGN KEY (payment_id) REFERENCES public.payment (id),
     FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
-
 
 CREATE TABLE IF NOT EXISTS public.reservation_review (
     id SERIAL PRIMARY KEY NOT NULL,
