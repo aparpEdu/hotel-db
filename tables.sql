@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     id SERIAL PRIMARY KEY NOT NULL,
     room_id INTEGER NOT NULL,
     client_id INTEGER NOT NULL,
-    payment_id INTEGER NOT NULL,
+    payment_id INTEGER NOT NULL UNIQUE,
     status_id INTEGER NOT NULL,
     reservation_date DATE NOT NULL,
     check_in_date DATE NOT NULL,
