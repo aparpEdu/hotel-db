@@ -49,7 +49,9 @@ VALUES ('King Suite'),
 
  INSERT INTO public.status (status_name)
  VALUES ('ACTIVE'),
-        ('CANCELLED');
+        ('CANCELLED'),
+        ('COMPLETED'),
+        ('FAILED');
 
 INSERT INTO public.room (room_type_id, price_per_night, room_capacity, room_number)
 VALUES (4, 300.00, 2, '101A'),
@@ -78,17 +80,17 @@ VALUES ('Cash'),
        ('Zelle'),
        ('Stripe');
 
-INSERT INTO public.payment (type_id, total_sum)
-VALUES (4, 75.00),
-       (5, 150.00),
-       (6, 200.00),
-       (7, 100.00),
-       (8, 50.00),
-       (9, 300.00),
-       (10, 180.00),
-       (1, 500.00),
-       (2, 120.00),
-       (3, 250.00);
+INSERT INTO public.payment (type_id, status_id, total_sum)
+VALUES (4, 1, 75.00),
+       (5, 1 150.00),
+       (6, 1 200.00),
+       (7, 1 100.00),
+       (8, 1 50.00),
+       (9, 1 300.00),
+       (10, 1 180.00),
+       (1, 1 500.00),
+       (2, 1 120.00),
+       (3, 1 250.00);
 
 INSERT INTO public.reservation (room_id, client_id, payment_id, status_id,reservation_date, check_in_date, check_out_date)
 VALUES (4, 4, 10, 1, '2023-10-18', '2023-11-17', '2023-11-25'),
