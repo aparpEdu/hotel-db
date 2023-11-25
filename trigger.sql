@@ -24,3 +24,24 @@ EXECUTE FUNCTION check_reservation_client();
 -- VALUES (2, 4, 'Beautiful view from the room!', 5);
 
 
+CREATE OR REPLACE FUNCTION check_room_availability()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM reservation
+        WHERE NEW.room_id = room_id
+          AND check_in_date < NEW.check_out_date
+          AND check_out_date > NEW.check_in_date
+    ) THEN
+        RAISE EXCEPTION 'Room is already reserved for the specified dates!';
+    ELSE
+        RETURN NEW;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_room_availability
+BEFORE INSERT ON reservation
+FOR EACH ROW
+EXECUTE FUNCTION check_room_availability();
