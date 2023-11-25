@@ -56,10 +56,13 @@ CREATE TABLE IF NOT EXISTS public.payment_type (
 CREATE TABLE IF NOT EXISTS public.payment (
     id SERIAL PRIMARY KEY NOT NULL,
     type_id INT NOT NULL,
+    status_id INT NOT NULL,
     total_sum NUMERIC(10,2) NOT NULL,
-	FOREIGN KEY (type_id) REFERENCES public.payment_type (id)
+	FOREIGN KEY (type_id) REFERENCES public.payment_type (id),
+	FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
 
+-- todo trigger za proverka room -> reservation
 CREATE TABLE IF NOT EXISTS public.reservation (
     id SERIAL PRIMARY KEY NOT NULL,
     room_id INTEGER NOT NULL,
@@ -75,6 +78,8 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
 
+
+-- todo triger za proverka  client -> reservation
 CREATE TABLE IF NOT EXISTS public.reservation_review (
 	id SERIAL PRIMARY KEY NOT NULL,
 	reservation_id INTEGER NOT NULL UNIQUE,
