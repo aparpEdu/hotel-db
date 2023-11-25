@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS public.client (
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone_number CHAR(13) NOT NULL,
-	birthday DATE NOT NULL,
+	birthday DATE NOT NULL CHECK (birthday >= CURRENT_DATE),
 	eu_gdpr BOOLEAN NOT NULL,
-	uin CHAR(10) NOT NULL
+	uin CHAR(10) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS public.service
