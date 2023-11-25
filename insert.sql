@@ -82,27 +82,27 @@ VALUES ('Cash'),
 
 INSERT INTO public.payment (type_id, status_id, total_sum)
 VALUES (4, 1, 75.00),
-       (5, 1 150.00),
-       (6, 1 200.00),
-       (7, 1 100.00),
-       (8, 1 50.00),
-       (9, 1 300.00),
-       (10, 1 180.00),
-       (1, 1 500.00),
-       (2, 1 120.00),
-       (3, 1 250.00);
+       (5, 1, 150.00),
+       (6, 1, 200.00),
+       (7, 1, 100.00),
+       (8, 1, 50.00),
+       (9, 1, 300.00),
+       (10, 1, 180.00),
+       (1, 1, 500.00),
+       (2, 1, 120.00),
+       (3, 1, 250.00);
 
 INSERT INTO public.reservation (room_id, client_id, payment_id, status_id,reservation_date, check_in_date, check_out_date)
-VALUES (4, 4, 10, 1, '2023-10-18', '2023-11-17', '2023-11-25'),
-       (5, 5, 9, 1, '2023-10-18', '2023-11-17', '2023-11-30'),
-       (6, 6, 8, 1, '2023-10-18', '2023-11-01', '2023-11-03'),
-       (7, 7, 1, 1, '2023-10-18', '2023-10-20', '2023-10-22'),
-       (8, 8, 2, 1, '2023-10-18', '2023-10-22', '2023-10-25'),
-       (9, 9, 3, 1, '2023-10-18', '2023-10-23', '2023-10-28'),
-       (10, 10, 4, 1, '2023-10-18', '2023-10-21', '2023-10-24'),
-       (1, 1, 5, 1, '2023-10-18', '2023-10-25', '2023-10-28'),
-       (2, 2, 6, 1, '2023-10-18', '2023-10-30', '2023-11-02'),
-       (3, 3, 7, 1, '2023-10-18', '2023-10-29', '2023-11-01');
+VALUES (4, 4, 10, 1, '2024-10-18', '2024-11-17', '2024-11-25'),
+       (5, 5, 9, 1, '2024-10-18', '2024-11-17', '2024-11-30'),
+       (6, 6, 8, 1, '2024-10-18', '2024-11-01', '2024-11-03'),
+       (7, 7, 1, 1, '2024-10-18', '2024-10-20', '2024-10-22'),
+       (8, 8, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '1 day'),
+       (9, 9, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days'),
+       (10, 10, 4, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '3 days'),
+       (1, 1, 5, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'7 days'),
+       (2, 2, 6, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'5 days'),
+       (3, 3, 7, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days');
 
 INSERT INTO public.reservation_review (reservation_id, client_id, comment, rating, date_posted)
 VALUES (4, 4, 'Beautiful view from the room!', 5, CURRENT_TIMESTAMP),
