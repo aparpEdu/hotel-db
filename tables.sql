@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS public.client (
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone_number CHAR(13) NOT NULL,
-	birthday DATE NOT NULL CHECK (birthday >= CURRENT_DATE),
+	birthday DATE NOT NULL CHECK (birthday < CURRENT_DATE),
 	eu_gdpr BOOLEAN NOT NULL,
 	uin CHAR(10) NOT NULL UNIQUE
 );
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS public.payment (
     type_id INT NOT NULL,
     status_id INT NOT NULL,
     total_sum NUMERIC(10,2) NOT NULL,
-    payment_date TIMESTAMP NOT NULL CHECK(payment_date >= CURRENT_TIMESTAMP),
+--     payment_date TIMESTAMP NOT NULL CHECK(payment_date >= CURRENT_TIMESTAMP),
 	FOREIGN KEY (type_id) REFERENCES public.payment_type (id),
 	FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     payment_id INTEGER NOT NULL UNIQUE,
     status_id INTEGER NOT NULL,
     reservation_date TIMESTAMP NOT NULL CHECK (reservation_date >= CURRENT_TIMESTAMP),
-    check_in_date TIMESTAMP NOT NULL CHECK (check_in_date >= CURRENT_TIMESTAMP),
+    check_in_date TIMESTAMP NOT NULL CHECK (check_in_date >= CURRENT_DATE),
     check_out_date TIMESTAMP NOT NULL CHECK (check_out_date >= CURRENT_TIMESTAMP),
     FOREIGN KEY (room_id) REFERENCES public.room (room_id),
     FOREIGN KEY (client_id) REFERENCES public.client (id),
