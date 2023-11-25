@@ -43,31 +43,36 @@ CREATE TABLE IF NOT EXISTS public.room (
     FOREIGN KEY (room_type_id) REFERENCES public.room_type (room_type_id)
 );
 
+CREATE TABLE IF NOT EXISTS public.status (
+    id SERIAL PRIMARY KEY NOT NULL,
+    status_name VARCHAR NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS public.payment_type (
 	id SERIAL PRIMARY KEY NOT NULL,
 	payment_type VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS public.payment (
-    payment_id SERIAL PRIMARY KEY NOT NULL,
+    id SERIAL PRIMARY KEY NOT NULL,
     type_id INT NOT NULL,
     total_sum NUMERIC(10,2) NOT NULL,
 	FOREIGN KEY (type_id) REFERENCES public.payment_type (id)
 );
 
-
-
 CREATE TABLE IF NOT EXISTS public.reservation (
     id SERIAL PRIMARY KEY NOT NULL,
     room_id INTEGER NOT NULL,
     client_id INTEGER NOT NULL,
-    payment_id INTEGER NOT NULL UNIQUE,
+    payment_id INTEGER NOT NULL,
+    status_id INTEGER NOT NULL,
     reservation_date DATE NOT NULL,
     check_in_date DATE NOT NULL,
     check_out_date DATE NOT NULL,
     FOREIGN KEY (room_id) REFERENCES public.room (room_id),
     FOREIGN KEY (client_id) REFERENCES public.client (id),
-    FOREIGN KEY (payment_id) REFERENCES public.payment (payment_id)
+    FOREIGN KEY (payment_id) REFERENCES public.payment (id),
+    FOREIGN KEY (status_id) REFERENCES public.status (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.reservation_review (
