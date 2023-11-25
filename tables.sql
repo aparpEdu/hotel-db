@@ -79,13 +79,13 @@ CREATE TABLE IF NOT EXISTS public.reservation (
 );
 
 
--- todo triger za proverka  client -> reservation
 CREATE TABLE IF NOT EXISTS public.reservation_review (
 	id SERIAL PRIMARY KEY NOT NULL,
 	reservation_id INTEGER NOT NULL UNIQUE,
 	client_id INTEGER NOT NULL,
 	comment VARCHAR(500) NOT NULL,
 	rating INTEGER NOT NULL,
+	date_posted DATE NOT NULL,
 	FOREIGN KEY (reservation_id) REFERENCES public.reservation (id),
 	FOREIGN KEY (client_id) REFERENCES public.client (id)
 );
