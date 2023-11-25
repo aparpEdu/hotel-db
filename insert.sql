@@ -104,14 +104,14 @@ VALUES (4, 4, 10, 1, '2023-10-18', '2023-11-17', '2023-11-25'),
        (2, 2, 6, 1, '2023-10-18', '2023-10-30', '2023-11-02'),
        (3, 3, 7, 1, '2023-10-18', '2023-10-29', '2023-11-01');
 
-INSERT INTO public.reservation_review (reservation_id, client_id, comment, rating)
-VALUES (4, 4, 'Beautiful view from the room!', 5),
-       (5, 5, 'Very clean and comfortable.', 4),
-       (6, 6, 'Enjoyed the spa services.', 4),
-       (7, 7, 'Friendly staff and great service.', 5),
-       (8, 8, 'Convenient location, will come back!', 4),
-       (9, 9, 'Spacious room, excellent amenities.', 5),
-       (10, 10, 'Loved the balcony and beach access.', 5),
-       (1, 1, 'Perfect stay, highly recommended!', 5),
-       (2, 2, 'Great experience, will recommend to friends.', 4),
-       (3, 3, 'Helpful concierge, enjoyed the city tour.', 5);
+INSERT INTO public.reservation_review (reservation_id, client_id, comment, rating, date_posted)
+VALUES (4, 4, 'Beautiful view from the room!', 5, CURRENT_TIMESTAMP),
+       (5, 5, 'Very clean and comfortable.', 4, CURRENT_TIMESTAMP),
+       (6, 6, 'Enjoyed the spa services.', 4, CURRENT_TIMESTAMP),
+       (7, 7, 'Friendly staff and great service.', 5, CURRENT_TIMESTAMP),
+       (8, 8, 'Convenient location, will come back!', 4, CURRENT_TIMESTAMP),
+       (9, 9, 'Spacious room, excellent amenities.', 5, CURRENT_TIMESTAMP),
+       (10, 10, 'Loved the balcony and beach access.', 5, CURRENT_TIMESTAMP),
+       (1, 1, 'Perfect stay, highly recommended!', 5, CURRENT_TIMESTAMP),
+       (2, 2, 'Great experience, will recommend to friends.', 4, CURRENT_TIMESTAMP),
+       (3, 3, 'Helpful concierge, enjoyed the city tour.', 5, CURRENT_TIMESTAMP);
