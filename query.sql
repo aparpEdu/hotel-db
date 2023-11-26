@@ -1,3 +1,4 @@
+--1
 SELECT
     r.id AS reservation_number,
     rm.room_number,
@@ -30,6 +31,7 @@ WHERE
      LIMIT 1
  )
 
+--2
  SELECT
      r.room_id AS reserved_room,
      m.period_start,
@@ -44,3 +46,9 @@ WHERE
      r.room_id, m.period_start, m.period_end
  ORDER BY
      number_of_reservations DESC;
+
+
+--4 terminate reservation
+ UPDATE public.reservation
+ SET status_id = 2
+ WHERE id = 1;
