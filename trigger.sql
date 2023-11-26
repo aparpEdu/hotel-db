@@ -60,21 +60,45 @@ BEGIN
         WHERE s.id = NEW.service_id
         AND s.is_seasonal = TRUE
         AND (
-            (s.season_start_month IS NOT NULL AND s.season_end_month IS NOT NULL) OR
-            (EXTRACT(MONTH FROM CURRENT_DATE) BETWEEN s.season_start_month AND s.season_end_month)
+            (s.season_start_month IS NULL AND s.season_end_month IS NULL) OR
+            (
+                (s.season_start_month IS NOT NULL AND s.season_end_month IS NULL)
+                AND EXTRACT(MONTH FROM CURRENT_DATE) >= s.season_start_month
+            )
+            OR
+            (
+                (s.season_start_month IS NULL AND s.season_end_month IS NOT NULL)
+                AND EXTRACT(MONTH FROM CURRENT_DATE) <= s.season_end_month
+            )
+            OR
+            (
+                EXTRACT(MONTH FROM CURRENT_DATE) BETWEEN s.season_start_month AND s.season_end_month
+            )
         )
     ) THEN
         RETURN NEW;
     ELSE
-        RAISE EXCEPTION 'The service is not in its seasonal period for the current month!';
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM public.service
+            WHERE id = NEW.service_id
+            AND is_seasonal = FALSE
+        ) THEN
+            RAISE EXCEPTION 'The service is not in its seasonal period for the current month!';
+        END IF;
     END IF;
+
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
+-- Re-enable the trigger function
 CREATE TRIGGER trigger_check_current_seasonal_service
 BEFORE INSERT ON public.client_service
 FOR EACH ROW
 EXECUTE FUNCTION check_current_seasonal_service();
+
 
 --demo
 -- INSERT INTO public.client_service (service_id, client_id)
