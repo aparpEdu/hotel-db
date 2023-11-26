@@ -60,7 +60,7 @@ BEGIN
         WHERE s.id = NEW.service_id
         AND s.is_seasonal = TRUE
         AND (
-            (s.season_start_month IS NULL AND s.season_end_month IS NULL) OR
+            (s.season_start_month IS NOT NULL AND s.season_end_month IS NOT NULL) OR
             (EXTRACT(MONTH FROM CURRENT_DATE) BETWEEN s.season_start_month AND s.season_end_month)
         )
     ) THEN
@@ -79,3 +79,41 @@ EXECUTE FUNCTION check_current_seasonal_service();
 --demo
 -- INSERT INTO public.client_service (service_id, client_id)
 -- VALUES (1, 1);
+
+--trigger for updating total_sum after new service inserts
+CREATE OR REPLACE FUNCTION update_payment_total_sum()
+RETURNS TRIGGER AS $$
+DECLARE
+    payment_id_to_update INTEGER;
+    service_price NUMERIC(10,2);
+BEGIN
+
+    SELECT price INTO service_price
+    FROM public.service
+    WHERE id = NEW.service_id;
+
+
+    SELECT payment_id INTO payment_id_to_update
+    FROM public.reservation
+    WHERE client_id = NEW.client_id
+	ORDER BY reservation_date DESC
+	LIMIT 1;
+
+
+    UPDATE public.payment
+    SET total_sum = total_sum + service_price
+    WHERE id = payment_id_to_update;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_update_payment_total_sum
+AFTER INSERT ON public.client_service
+FOR EACH ROW
+EXECUTE FUNCTION update_payment_total_sum();
+
+--demo
+-- INSERT INTO public.client_service (service_id, client_id)
+-- VALUES (2, 1);
