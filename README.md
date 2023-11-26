@@ -25,4 +25,4 @@
 
 **insert.sql - Table mock data**
 
-**query.sql - 4 Select Queries**
+**query.sql - 4 Queries**
