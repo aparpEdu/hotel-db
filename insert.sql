@@ -11,8 +11,8 @@ VALUES ('Emily', 'Johnson', 'emily.j@example.com', '555-123-4567', '1990-05-15',
        ('Ethan', 'Garcia', 'ethan.g@example.com', '555-901-2345', '1987-06-29', true, 'BCD9012345');
 
 
-INSERT INTO public.service (name, price, season_start_date, season_end_date, is_seasonal)
-VALUES ('Penthouse Suite', 500.00, '2023-01-01', '2023-12-31', TRUE),
+INSERT INTO public.service (name, price, season_start_month, season_end_month, is_seasonal)
+VALUES ('Penthouse Suite', 500.00, 1, 10, TRUE),
        ('Executive Room', 180.00, NULL, NULL, FALSE),
        ('Honeymoon Package', 250.00, NULL, NULL, FALSE),
        ('Meeting Room Rental', 300.00, NULL, NULL, FALSE),
