@@ -142,3 +142,24 @@ EXECUTE FUNCTION update_payment_total_sum();
 -- INSERT INTO public.client_service (service_id, client_id)
 -- VALUES (2, 1);
 
+--trigger for checking if the guest number is withing range of the room capacity
+CREATE OR REPLACE FUNCTION check_guest_capacity()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.number_of_guests IS NOT NULL THEN
+        IF NEW.number_of_guests > (SELECT room_capacity FROM public.room WHERE id = NEW.room_id) THEN
+            RAISE EXCEPTION 'Number of guests exceeds room capacity';
+        END IF;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_guest_capacity
+BEFORE INSERT OR UPDATE OF number_of_guests ON public.reservation
+FOR EACH ROW EXECUTE FUNCTION check_guest_capacity();
+
+
+--demo
+-- INSERT INTO public.reservation (room_id, client_id, payment_id, status_id, number_of_guests, reservation_date, check_in_date, check_out_date)
+-- VALUES (4, 4, 10, 1, 3, '2024-10-18', '2024-11-17', '2024-11-25');
