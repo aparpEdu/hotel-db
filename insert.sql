@@ -24,7 +24,7 @@ VALUES ('Penthouse Suite', 500.00, 1, 10, TRUE),
        ('Concierge Service', 30.00, NULL, NULL, FALSE);
 
 INSERT INTO public.client_service (service_id, client_id)
-VALUES (1, 1),
+VALUES
        (2, 2),
        (3, 3),
        (4, 4),
@@ -92,26 +92,26 @@ VALUES (4, 1, 75.00),
        (2, 1, 120.00),
        (3, 1, 250.00);
 
-INSERT INTO public.reservation (room_id, client_id, payment_id, status_id,reservation_date, check_in_date, check_out_date)
-VALUES (4, 4, 10, 1, '2024-10-18', '2024-11-17', '2024-11-25'),
-       (5, 5, 9, 1, '2024-10-18', '2024-11-17', '2024-11-30'),
-       (6, 6, 8, 1, '2024-10-18', '2024-11-01', '2024-11-03'),
-       (7, 7, 1, 1, '2024-10-18', '2024-10-20', '2024-10-22'),
-       (8, 8, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '1 day'),
-       (9, 9, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days'),
-       (10, 10, 4, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '3 days'),
-       (1, 1, 5, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'7 days'),
-       (2, 2, 6, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'5 days'),
-       (3, 3, 7, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days');
+INSERT INTO public.reservation (room_id, client_id, payment_id, status_id, number_of_guests, reservation_date, check_in_date, check_out_date)
+VALUES (4, 4, 10, 1, 2, '2024-10-18', '2024-11-17', '2024-11-25'),
+       (5, 5, 9, 1, 2, '2024-10-18', '2024-11-17', '2024-11-30'),
+       (6, 6, 8, 1, 2, '2024-10-18', '2024-11-01', '2024-11-03'),
+       (7, 7, 1, 1, 2, '2024-10-18', '2024-10-20', '2024-10-22'),
+       (8, 8, 2, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '1 day'),
+       (9, 9, 3, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days'),
+       (10, 10, 4, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '3 days'),
+       (1, 1, 5, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'7 days'),
+       (2, 2, 6, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'5 days'),
+       (3, 3, 7, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days');
 
 INSERT INTO public.reservation_review (reservation_id, client_id, comment, rating, date_posted)
-VALUES (4, 4, 'Beautiful view from the room!', 5, CURRENT_TIMESTAMP),
-       (5, 5, 'Very clean and comfortable.', 4, CURRENT_TIMESTAMP),
-       (6, 6, 'Enjoyed the spa services.', 4, CURRENT_TIMESTAMP),
-       (7, 7, 'Friendly staff and great service.', 5, CURRENT_TIMESTAMP),
-       (8, 8, 'Convenient location, will come back!', 4, CURRENT_TIMESTAMP),
-       (9, 9, 'Spacious room, excellent amenities.', 5, CURRENT_TIMESTAMP),
-       (10, 10, 'Loved the balcony and beach access.', 5, CURRENT_TIMESTAMP),
-       (1, 1, 'Perfect stay, highly recommended!', 5, CURRENT_TIMESTAMP),
-       (2, 2, 'Great experience, will recommend to friends.', 4, CURRENT_TIMESTAMP),
-       (3, 3, 'Helpful concierge, enjoyed the city tour.', 5, CURRENT_TIMESTAMP);
+VALUES (1, 4, 'Beautiful view from the room!', 5, CURRENT_TIMESTAMP),
+       (2, 5, 'Very clean and comfortable.', 4, CURRENT_TIMESTAMP),
+       (3, 6, 'Enjoyed the spa services.', 4, CURRENT_TIMESTAMP),
+       (4, 7, 'Friendly staff and great service.', 5, CURRENT_TIMESTAMP),
+       (5, 8, 'Convenient location, will come back!', 4, CURRENT_TIMESTAMP),
+       (6, 9, 'Spacious room, excellent amenities.', 5, CURRENT_TIMESTAMP),
+       (7, 10, 'Loved the balcony and beach access.', 5, CURRENT_TIMESTAMP),
+       (8, 1, 'Perfect stay, highly recommended!', 5, CURRENT_TIMESTAMP),
+       (9, 2, 'Great experience, will recommend to friends.', 4, CURRENT_TIMESTAMP),
+       (10, 3, 'Helpful concierge, enjoyed the city tour.', 5, CURRENT_TIMESTAMP);
