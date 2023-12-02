@@ -15,7 +15,7 @@ FROM
     JOIN public.payment p ON r.payment_id = p.id
     JOIN public.payment_type pt ON p.type_id = pt.id
 WHERE
-    check_in_date = CURRENT_DATE;
+    DATE(check_in_date) = CURRENT_DATE;
 
 --3
  WITH MostReservedPeriod AS (
