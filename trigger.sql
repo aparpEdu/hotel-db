@@ -141,3 +141,4 @@ EXECUTE FUNCTION update_payment_total_sum();
 --demo
 -- INSERT INTO public.client_service (service_id, client_id)
 -- VALUES (2, 1);
+

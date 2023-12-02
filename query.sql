@@ -5,19 +5,19 @@ SELECT
     c.first_name || ' ' || c.last_name AS customer_name,
     r.check_in_date,
     r.check_out_date,
-    rm.room_capacity AS number_of_guests,
+    r.number_of_guests,
     p.total_sum AS total_amount,
     pt.payment_type AS payment_method
 FROM
     public.reservation r
-    JOIN public.room rm ON r.room_id = rm.room_id
+    JOIN public.room rm ON r.room_id = rm.id
     JOIN public.client c ON r.client_id = c.id
-    JOIN public.payment p ON r.payment_id = p.payment_id
+    JOIN public.payment p ON r.payment_id = p.id
     JOIN public.payment_type pt ON p.type_id = pt.id
 WHERE
     check_in_date = CURRENT_DATE;
 
-
+--3
  WITH MostReservedPeriod AS (
      SELECT
          r.check_in_date AS period_start,
@@ -31,7 +31,7 @@ WHERE
      LIMIT 1
  )
 
---2
+
  SELECT
      r.room_id AS reserved_room,
      m.period_start,

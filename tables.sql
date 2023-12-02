@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     room_id INTEGER NOT NULL,
     client_id INTEGER NOT NULL,
     payment_id INTEGER NOT NULL UNIQUE,
-    number_of_people INTEGER NULL CHECK(number_of_people > 0),
+    number_of_guests INTEGER NULL CHECK(number_of_guests > 0),
     status_id INTEGER NOT NULL,
     reservation_date TIMESTAMP NOT NULL CHECK (reservation_date >= CURRENT_TIMESTAMP),
     check_in_date TIMESTAMP NOT NULL CHECK (check_in_date >= CURRENT_DATE),
