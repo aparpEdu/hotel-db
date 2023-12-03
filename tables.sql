@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS public.payment (
     id SERIAL PRIMARY KEY NOT NULL,
     type_id INT NOT NULL,
     status_id INT NOT NULL,
-    total_sum NUMERIC(10,2) NOT NULL,
+    total_sum NUMERIC(10,2) DEFAULT 0 CHECK(total_sum >= 0),
 --     payment_date TIMESTAMP NOT NULL CHECK(payment_date >= CURRENT_TIMESTAMP),
 	FOREIGN KEY (type_id) REFERENCES public.payment_type (id),
 	FOREIGN KEY (status_id) REFERENCES public.status (id)
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS public.reservation_service
 (
 	service_id INTEGER NOT NULL,
 	reservation_id INTEGER NOT NULL,
-	quantity INTEGER DEFAULT 1,
+	quantity INTEGER DEFAULT 1 CHECK(quantity >= 1),
 	date_requested TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK(date_requested >= CURRENT_TIMESTAMP),
 	FOREIGN KEY (service_id) REFERENCES public.service (id),
     FOREIGN KEY (reservation_id) REFERENCES public.reservation (id)

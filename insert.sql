@@ -68,17 +68,17 @@ VALUES ('Cash'),
        ('Zelle'),
        ('Stripe');
 
-INSERT INTO public.payment (type_id, status_id, total_sum)
-VALUES (4, 1, 75.00),
-       (5, 1, 150.00),
-       (6, 1, 200.00),
-       (7, 1, 100.00),
-       (8, 1, 50.00),
-       (9, 1, 300.00),
-       (10, 1, 180.00),
-       (1, 1, 500.00),
-       (2, 1, 120.00),
-       (3, 1, 250.00);
+INSERT INTO public.payment (type_id, status_id)
+VALUES (4, 1),
+       (5, 1),
+       (6, 1),
+       (7, 1),
+       (8, 1),
+       (9, 1),
+       (10, 1),
+       (1, 1),
+       (2, 1),
+       (3, 1);
 
 INSERT INTO public.reservation (room_id, client_id, payment_id, status_id, number_of_guests, reservation_date, check_in_date, check_out_date)
 VALUES (4, 4, 10, 1, 2, '2024-10-18', '2024-11-17', '2024-11-25'),

@@ -165,3 +165,29 @@ FOR EACH ROW EXECUTE FUNCTION check_guest_capacity();
 --demo
 -- INSERT INTO public.reservation (room_id, client_id, payment_id, status_id, number_of_guests, reservation_date, check_in_date, check_out_date)
 -- VALUES (4, 4, 10, 1, 3, '2024-10-18', '2024-11-17', '2024-11-25');
+
+--trigger for updating the total sum in payment with the reserved room
+CREATE OR REPLACE FUNCTION update_payment_total_sum_initial()
+RETURNS TRIGGER AS $$
+DECLARE
+    room_price NUMERIC(10,2);
+BEGIN
+
+    SELECT price_per_night INTO room_price
+    FROM public.room
+    WHERE id = NEW.room_id;
+
+
+    UPDATE public.payment
+    SET total_sum = total_sum + room_price
+    WHERE id = NEW.payment_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_payment_trigger
+AFTER INSERT ON public.reservation
+FOR EACH ROW
+EXECUTE FUNCTION update_payment_total_sum_initial();
+
