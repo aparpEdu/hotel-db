@@ -31,6 +31,7 @@ BEGIN
         SELECT 1
         FROM reservation
         WHERE NEW.room_id = room_id
+          AND status_id = 1
           AND check_in_date < NEW.check_out_date
           AND check_out_date > NEW.check_in_date
     ) THEN
