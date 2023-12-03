@@ -11,7 +11,7 @@ VALUES ('Emily', 'Johnson', 'emily.j@example.com', '555-123-4567', '1990-05-15',
        ('Ethan', 'Garcia', 'ethan.g@example.com', '555-901-2345', '1987-06-29', true, 'BCD9012345');
 
 
-INSERT INTO public.service (name, price, season_start_month, season_end_month, is_seasonal)
+INSERT INTO public.service (name, price, offer_start_month, offer_end_month, is_limited_time_offer)
 VALUES ('Penthouse Suite', 500.00, 1, 10, TRUE),
        ('Executive Room', 180.00, NULL, NULL, FALSE),
        ('Honeymoon Package', 250.00, NULL, NULL, FALSE),

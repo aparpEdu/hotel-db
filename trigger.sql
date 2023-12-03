@@ -52,28 +52,28 @@ EXECUTE FUNCTION check_room_availability();
 -- VALUES (4, 4, 10, 1, '2024-10-18', '2024-11-17', '2024-11-25');
 
 -- check if the current months align with the seasonal months of the service before inserting
-CREATE OR REPLACE FUNCTION check_current_seasonal_service()
+CREATE OR REPLACE FUNCTION check_current_limited_service()
 RETURNS TRIGGER AS $$
 BEGIN
     IF EXISTS (
         SELECT 1
         FROM public.service s
         WHERE s.id = NEW.service_id
-        AND s.is_seasonal = TRUE
+        AND s.is_limited_time_offer = TRUE
         AND (
-            (s.season_start_month IS NULL AND s.season_end_month IS NULL) OR
+            (s.offer_start_month IS NULL AND s.offer_end_month IS NULL) OR
             (
-                (s.season_start_month IS NOT NULL AND s.season_end_month IS NULL)
-                AND EXTRACT(MONTH FROM CURRENT_DATE) >= s.season_start_month
+                (s.offer_start_month IS NOT NULL AND s.offer_end_month IS NULL)
+                AND EXTRACT(MONTH FROM CURRENT_DATE) >= s.offer_start_month
             )
             OR
             (
-                (s.season_start_month IS NULL AND s.season_end_month IS NOT NULL)
-                AND EXTRACT(MONTH FROM CURRENT_DATE) <= s.season_end_month
+                (s.offer_start_month IS NULL AND s.offer_end_month IS NOT NULL)
+                AND EXTRACT(MONTH FROM CURRENT_DATE) <= s.offer_end_month
             )
             OR
             (
-                EXTRACT(MONTH FROM CURRENT_DATE) BETWEEN s.season_start_month AND s.season_end_month
+                EXTRACT(MONTH FROM CURRENT_DATE) BETWEEN s.offer_start_month AND s.offer_end_month
             )
         )
     ) THEN
@@ -86,7 +86,7 @@ BEGIN
             WHERE id = NEW.service_id
             AND is_seasonal = FALSE
         ) THEN
-            RAISE EXCEPTION 'The service is not in its seasonal period for the current month!';
+            RAISE EXCEPTION 'The service is not in its limited period for the current month!';
         END IF;
     END IF;
 
@@ -95,10 +95,10 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Re-enable the trigger function
-CREATE TRIGGER trigger_check_current_seasonal_service
+CREATE TRIGGER trigger_check_current_limited_service
 BEFORE INSERT ON public.reservation_service
 FOR EACH ROW
-EXECUTE FUNCTION check_current_seasonal_service();
+EXECUTE FUNCTION check_current_limited_service();
 
 
 --demo

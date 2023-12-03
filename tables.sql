@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS public.service
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(50) NOT NULL,
     price NUMERIC(10,2) NOT NULL,
-    season_start_month SMALLINT CHECK(season_start_month >= 1 AND season_start_month <= 12),
-    season_end_month SMALLINT CHECK(season_end_month >= 1 AND season_end_month <= 12),
-    is_seasonal BOOLEAN NOT NULL
+    offer_start_month SMALLINT CHECK(offer_start_month >= 1 AND offer_start_month <= 12),
+    offer_end_month SMALLINT CHECK(offer_end_month >= 1 AND offer_end_month <= 12),
+    is_limited_time_offer BOOLEAN NOT NULL
 );
 
 
