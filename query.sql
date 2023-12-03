@@ -17,6 +17,18 @@ FROM
 WHERE
     DATE(check_in_date) = CURRENT_DATE;
 
+
+--2 services linked to reservations
+SELECT s.name AS service_name,
+       rs.quantity,
+       (s.price * rs.quantity * r.number_of_guests) AS total_price
+FROM public.reservation_service rs
+JOIN public.service s ON rs.service_id = s.id
+JOIN public.reservation r ON rs.reservation_id = r.id
+WHERE rs.reservation_id = 1;
+
+
+
 --3 most reserved periods the rooms in the periods and the number of reservations for them
  WITH MostReservedPeriod AS (
       SELECT
