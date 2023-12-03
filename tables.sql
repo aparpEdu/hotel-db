@@ -19,13 +19,6 @@ CREATE TABLE IF NOT EXISTS public.service
     is_seasonal BOOLEAN NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS public.client_service
-(
-	service_id INTEGER NOT NULL,
-	client_id INTEGER NOT NULL,
-	FOREIGN KEY (service_id) REFERENCES public.service (id),
-    FOREIGN KEY (client_id) REFERENCES public.client (id)
-);
 
 CREATE TABLE IF NOT EXISTS public.room_type (
     id SERIAL PRIMARY KEY NOT NULL,
@@ -76,6 +69,16 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     FOREIGN KEY (client_id) REFERENCES public.client (id),
     FOREIGN KEY (payment_id) REFERENCES public.payment (id),
     FOREIGN KEY (status_id) REFERENCES public.status (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.reservation_service
+(
+	service_id INTEGER NOT NULL,
+	reservation_id INTEGER NOT NULL,
+	quantity INTEGER DEFAULT 1,
+	date_requested TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK(date_requested >= CURRENT_TIMESTAMP),
+	FOREIGN KEY (service_id) REFERENCES public.service (id),
+    FOREIGN KEY (reservation_id) REFERENCES public.reservation (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.reservation_review (

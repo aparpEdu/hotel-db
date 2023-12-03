@@ -23,18 +23,6 @@ VALUES ('Penthouse Suite', 500.00, 1, 10, TRUE),
        ('Car Rental', 200.00, NULL, NULL, FALSE),
        ('Concierge Service', 30.00, NULL, NULL, FALSE);
 
-INSERT INTO public.client_service (service_id, client_id)
-VALUES
-       (2, 2),
-       (3, 3),
-       (4, 4),
-       (5, 5),
-       (6, 6),
-       (7, 7),
-       (8, 8),
-       (9, 9),
-       (10, 10);
-
 INSERT INTO public.room_type (room_type)
 VALUES ('King Suite'),
        ('Twin Room'),
@@ -103,6 +91,20 @@ VALUES (4, 4, 10, 1, 2, '2024-10-18', '2024-11-17', '2024-11-25'),
        (1, 1, 5, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'7 days'),
        (2, 2, 6, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL'5 days'),
        (3, 3, 7, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days');
+
+INSERT INTO public.reservation_service (service_id, reservation_id)
+VALUES
+       (2, 9),
+       (3, 10),
+       (4, 1),
+       (5, 2),
+       (6, 3),
+       (7, 4),
+       (8, 5),
+       (9, 6),
+       (10, 7);
+
+
 
 INSERT INTO public.reservation_review (reservation_id, client_id, comment, rating, date_posted)
 VALUES (1, 4, 'Beautiful view from the room!', 5, CURRENT_TIMESTAMP),

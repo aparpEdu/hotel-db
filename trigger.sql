@@ -96,7 +96,7 @@ $$ LANGUAGE plpgsql;
 
 -- Re-enable the trigger function
 CREATE TRIGGER trigger_check_current_seasonal_service
-BEFORE INSERT ON public.client_service
+BEFORE INSERT ON public.reservation_service
 FOR EACH ROW
 EXECUTE FUNCTION check_current_seasonal_service();
 
@@ -111,22 +111,23 @@ RETURNS TRIGGER AS $$
 DECLARE
     payment_id_to_update INTEGER;
     service_price NUMERIC(10,2);
+    guest_number INTEGER;
 BEGIN
 
     SELECT price INTO service_price
     FROM public.service
     WHERE id = NEW.service_id;
 
-
     SELECT payment_id INTO payment_id_to_update
     FROM public.reservation
-    WHERE client_id = NEW.client_id
-	ORDER BY reservation_date DESC
-	LIMIT 1;
+    WHERE id = NEW.reservation_id;
 
+    SELECT number_of_guests INTO guest_number
+    FROM public.reservation
+    WHERE id = NEW.reservation_id;
 
     UPDATE public.payment
-    SET total_sum = total_sum + service_price
+    SET total_sum = total_sum + (service_price * NEW.quantity * guest_number)
     WHERE id = payment_id_to_update;
 
     RETURN NEW;
@@ -135,13 +136,13 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE TRIGGER trigger_update_payment_total_sum
-AFTER INSERT ON public.client_service
+AFTER INSERT ON public.reservation_service
 FOR EACH ROW
 EXECUTE FUNCTION update_payment_total_sum();
 
 --demo
--- INSERT INTO public.client_service (service_id, client_id)
--- VALUES (2, 1);
+-- INSERT INTO public.reservation_service (service_id, reservation_id, quantity)
+-- VALUES (1,8,3);
 
 --trigger for checking if the guest number is withing range of the room capacity
 CREATE OR REPLACE FUNCTION check_guest_capacity()
