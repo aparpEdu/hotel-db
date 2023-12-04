@@ -65,3 +65,12 @@ WHERE rs.reservation_id = 1;
  UPDATE public.reservation
  SET status_id = 2
  WHERE id = 1;
+
+
+--5 Select service by reservation ID
+
+ SELECT sv.name, rs.quantity, (rs.quantity*sv.price*rz.number_of_guests),  
+ FROM public.service sv
+ JOIN public.reservation_service rs ON rs.service_id = sv.id
+ JOIN public.reservation rz
+ WHERE rz.id = rs.reservation.id
