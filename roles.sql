@@ -19,7 +19,7 @@ CREATE ROLE hotel_employee;
 GRANT SELECT ON ALL TABLES IN SCHEMA public to hotel_employee;
 GRANT INSERT ON TABLE client TO hotel_employee;
 GRANT INSERT ON TABLE reservation TO hotel_employee;
-GRANT INSERT ON TABLE client_service TO hotel_employee;
+GRANT INSERT ON TABLE reservation_service TO hotel_employee;
 
 -- SELECT table_schema, table_name, privilege_type
 -- FROM information_schema.role_table_grants
