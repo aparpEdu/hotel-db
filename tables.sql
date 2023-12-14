@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS public.payment (
     type_id INT NOT NULL,
     status_id INT NOT NULL,
     total_sum NUMERIC(10,2) DEFAULT 0 CHECK(total_sum >= 0),
---     payment_date TIMESTAMP NOT NULL CHECK(payment_date >= CURRENT_TIMESTAMP),
 	FOREIGN KEY (type_id) REFERENCES public.payment_type (id),
 	FOREIGN KEY (status_id) REFERENCES public.status (id)
 );

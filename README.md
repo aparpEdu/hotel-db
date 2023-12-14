@@ -5,13 +5,13 @@
 
 ## Contributors
 
-**Alexander Parpulansky - Service/Roles**
+**Alexander Parpulansky - Service/Payment**
 
 **Nikolay Kalchev - Room/Client**
 
-**Pavel Ivanov - Reservation/Payment**
+**Pavel Ivanov - Reservation/Review**
 
-**Alexander Stoyanov - QA**
+**Alexander Stoyanov - Roles**
 
 ## Content
 
