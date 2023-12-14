@@ -2,8 +2,8 @@ CREATE TABLE IF NOT EXISTS public.client (
     id SERIAL PRIMARY KEY NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone_number CHAR(13) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone_number CHAR(13) NOT NULL UNIQUE,
 	birthday DATE NOT NULL CHECK (birthday < CURRENT_DATE),
 	eu_gdpr BOOLEAN NOT NULL,
 	uin CHAR(10) NOT NULL UNIQUE
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS public.client (
 CREATE TABLE IF NOT EXISTS public.service
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL UNIQUE,
     price NUMERIC(10,2) NOT NULL,
     offer_start_month SMALLINT CHECK(offer_start_month >= 1 AND offer_start_month <= 12),
     offer_end_month SMALLINT CHECK(offer_end_month >= 1 AND offer_end_month <= 12),
