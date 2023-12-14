@@ -84,7 +84,7 @@ BEGIN
             SELECT 1
             FROM public.service
             WHERE id = NEW.service_id
-            AND is_seasonal = FALSE
+            AND is_limited_time_offer = FALSE
         ) THEN
             RAISE EXCEPTION 'The service is not in its limited period for the current month!';
         END IF;
