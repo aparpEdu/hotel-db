@@ -84,7 +84,7 @@ INSERT INTO public.reservation (room_id, client_id, payment_id, status_id, numbe
 VALUES (4, 4, 10, 1, 2, '2024-10-18', '2024-11-17', '2024-11-25'),
        (5, 5, 9, 1, 2, '2024-10-18', '2024-11-17', '2024-11-30'),
        (6, 6, 8, 1, 2, '2024-10-18', '2024-11-01', '2024-11-03'),
-       (7, 7, 1, 1, 2, '2023-12-15', '2023-12-15', '2024-01-15'),
+       (7, 7, 1, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '2024-01-15'),
        (8, 8, 2, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '1 day'),
        (9, 9, 3, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '2 days'),
        (10, 10, 4, 1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '3 days'),
