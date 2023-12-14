@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS public.reservation (
     payment_id INTEGER NOT NULL UNIQUE,
     number_of_guests INTEGER NULL CHECK(number_of_guests > 0),
     status_id INTEGER NOT NULL,
-    reservation_date TIMESTAMP NOT NULL CHECK (reservation_date >= CURRENT_TIMESTAMP),
+    reservation_date TIMESTAMP NOT NULL CHECK (reservation_date >= CURRENT_DATE),
     check_in_date TIMESTAMP NOT NULL CHECK (check_in_date >= CURRENT_DATE),
     check_out_date TIMESTAMP NOT NULL CHECK (check_out_date >= CURRENT_TIMESTAMP),
     FOREIGN KEY (room_id) REFERENCES public.room (id),
