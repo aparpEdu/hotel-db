@@ -332,7 +332,7 @@ CREATE TABLE public.reservation (
     CONSTRAINT reservation_check_in_date_check CHECK ((check_in_date >= CURRENT_DATE)),
     CONSTRAINT reservation_check_out_date_check CHECK ((check_out_date >= CURRENT_TIMESTAMP)),
     CONSTRAINT reservation_number_of_guests_check CHECK ((number_of_guests > 0)),
-    CONSTRAINT reservation_reservation_date_check CHECK ((reservation_date >= CURRENT_TIMESTAMP))
+    CONSTRAINT reservation_reservation_date_check CHECK ((reservation_date >= CURRENT_DATE))
 );
 
 
@@ -689,13 +689,13 @@ COPY public.reservation (id, room_id, client_id, payment_id, number_of_guests, s
 1	4	4	10	2	1	2024-10-18 00:00:00	2024-11-17 00:00:00	2024-11-25 00:00:00
 2	5	5	9	2	1	2024-10-18 00:00:00	2024-11-17 00:00:00	2024-11-30 00:00:00
 3	6	6	8	2	1	2024-10-18 00:00:00	2024-11-01 00:00:00	2024-11-03 00:00:00
-4	7	7	1	2	1	2024-10-18 00:00:00	2023-12-15 00:00:00	2024-01-15 00:00:00
-5	8	8	2	2	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-15 17:22:38.509495
-6	9	9	3	2	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-16 17:22:38.509495
-7	10	10	4	2	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-17 17:22:38.509495
-8	1	1	5	2	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-21 17:22:38.509495
-9	2	2	6	1	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-19 17:22:38.509495
-10	3	3	7	2	1	2023-12-14 17:22:38.509495	2023-12-14 17:22:38.509495	2023-12-16 17:22:38.509495
+4	7	7	1	2	1	2023-12-15 00:00:00	2023-12-15 00:00:00	2024-01-15 00:00:00
+5	8	8	2	2	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-15 17:39:55.788121
+6	9	9	3	2	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-16 17:39:55.788121
+7	10	10	4	2	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-17 17:39:55.788121
+8	1	1	5	2	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-21 17:39:55.788121
+9	2	2	6	1	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-19 17:39:55.788121
+10	3	3	7	2	1	2023-12-14 17:39:55.788121	2023-12-14 17:39:55.788121	2023-12-16 17:39:55.788121
 \.
 
 
@@ -704,16 +704,16 @@ COPY public.reservation (id, room_id, client_id, payment_id, number_of_guests, s
 --
 
 COPY public.reservation_review (id, reservation_id, client_id, comment, rating, date_posted) FROM stdin;
-1	1	4	Beautiful view from the room!	5	2023-12-14 17:22:38.509495
-2	2	5	Very clean and comfortable.	4	2023-12-14 17:22:38.509495
-3	3	6	Enjoyed the spa services.	4	2023-12-14 17:22:38.509495
-4	4	7	Friendly staff and great service.	5	2023-12-14 17:22:38.509495
-5	5	8	Convenient location, will come back!	4	2023-12-14 17:22:38.509495
-6	6	9	Spacious room, excellent amenities.	5	2023-12-14 17:22:38.509495
-7	7	10	Loved the balcony and beach access.	5	2023-12-14 17:22:38.509495
-8	8	1	Perfect stay, highly recommended!	5	2023-12-14 17:22:38.509495
-9	9	2	Great experience, will recommend to friends.	4	2023-12-14 17:22:38.509495
-10	10	3	Helpful concierge, enjoyed the city tour.	5	2023-12-14 17:22:38.509495
+1	1	4	Beautiful view from the room!	5	2023-12-14 17:39:55.788121
+2	2	5	Very clean and comfortable.	4	2023-12-14 17:39:55.788121
+3	3	6	Enjoyed the spa services.	4	2023-12-14 17:39:55.788121
+4	4	7	Friendly staff and great service.	5	2023-12-14 17:39:55.788121
+5	5	8	Convenient location, will come back!	4	2023-12-14 17:39:55.788121
+6	6	9	Spacious room, excellent amenities.	5	2023-12-14 17:39:55.788121
+7	7	10	Loved the balcony and beach access.	5	2023-12-14 17:39:55.788121
+8	8	1	Perfect stay, highly recommended!	5	2023-12-14 17:39:55.788121
+9	9	2	Great experience, will recommend to friends.	4	2023-12-14 17:39:55.788121
+10	10	3	Helpful concierge, enjoyed the city tour.	5	2023-12-14 17:39:55.788121
 \.
 
 
@@ -722,15 +722,15 @@ COPY public.reservation_review (id, reservation_id, client_id, comment, rating, 
 --
 
 COPY public.reservation_service (service_id, reservation_id, quantity, date_requested) FROM stdin;
-2	9	1	2023-12-14 17:22:38.509495
-3	10	1	2023-12-14 17:22:38.509495
-4	1	1	2023-12-14 17:22:38.509495
-5	2	1	2023-12-14 17:22:38.509495
-6	3	1	2023-12-14 17:22:38.509495
-7	4	1	2023-12-14 17:22:38.509495
-8	5	1	2023-12-14 17:22:38.509495
-9	6	1	2023-12-14 17:22:38.509495
-10	7	1	2023-12-14 17:22:38.509495
+2	9	1	2023-12-14 17:39:55.788121
+3	10	1	2023-12-14 17:39:55.788121
+4	1	1	2023-12-14 17:39:55.788121
+5	2	1	2023-12-14 17:39:55.788121
+6	3	1	2023-12-14 17:39:55.788121
+7	4	1	2023-12-14 17:39:55.788121
+8	5	1	2023-12-14 17:39:55.788121
+9	6	1	2023-12-14 17:39:55.788121
+10	7	1	2023-12-14 17:39:55.788121
 \.
 
 
